@@ -1,11 +1,9 @@
-import os, random, string
+import os, sys, random, string, shutil
 from PIL import Image # Pillow
-import shutil
-import sys
 
-def new_dir_name(l):
+def new_dir_name(length):
     s = string.ascii_letters + string.digits
-    return ''.join(random.sample(s, l))
+    return ''.join(random.sample(s, length))
 
 def do_zip(filename):
     shutil.make_archive(filename, 'zip', root_dir='.', base_dir=filename)
@@ -33,11 +31,21 @@ def main(size, length, img_path=None, mkdir=False):
 
 if __name__ == '__main__':
     try:
-        l = int(sys.argv[1].strip())
+        length = int(sys.argv[1].strip())
         img_path = sys.argv[2]
-        main((l, l), 8, img_path, False)
+        main(
+                (length, length),
+                8,
+                img_path,
+                False
+            )
     except IndexError:
-        l = raw_input('input min length that you want: ')
-        l = int(l.strip())
-        main((l, l), 8, None, True)
+        _length = raw_input('input min length that you want: ')
+        length = int(_length.strip())
+        main(
+                (length, length),
+                8,
+                None,
+                True
+            )
        
