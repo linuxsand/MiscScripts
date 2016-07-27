@@ -1,0 +1,1 @@
+A script to resize photos, optionally zip them.
