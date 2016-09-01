@@ -6,12 +6,8 @@ def is_port_in_use(port):
     # http://stackoverflow.com/questions/19196105/python-how-to-check-if-a-network-port-is-open-on-linux
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     result = sock.connect_ex(('127.0.0.1',port))
-    if result == 0:
-       # print "Port is opened"
-       return True
-    else:
-       return False
     sock.close()
+    return result == 0
     
 def gen_port():
     while True:
