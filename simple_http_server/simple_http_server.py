@@ -1,5 +1,5 @@
 import socket, SimpleHTTPServer, SocketServer
-import os, random
+import os, random, time
 import clipboard
 
 def is_port_in_use(port):
@@ -16,11 +16,9 @@ def gen_port():
             return port
 
 def main():
-    # Windows zh-cn version
-    path = os.path.normpath(clipboard.paste().encode('gbk'))
+    path = os.path.normpath(clipboard.paste())
     if not os.path.exists(path):
         print path, 'does not exit'
-        import time
         time.sleep(2)
         return
     print 'content in clipboard (will use as dir path)', path
