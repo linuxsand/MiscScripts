@@ -30,8 +30,16 @@ def add_lic_file():
     print '\n\n'
 
 def kill_processes():
+    # didn't check if process is running
+    # because I'd like to avoid importing `psutil`
     os.system('taskkill /f /im SmartHMI.exe')
-    os.system('taskkill /f /im StartKRC.exe')
+    # terminate real-time OS
+    ret = os.system('C:\\KRC\\VXWIN\\UploadRtos.exe -x')
+    if ret == 0:
+        os.system('taskkill /f /im StartKRC.exe')
+    else:
+        print 'If KRC is not running, please ignore this; otherwise, please stop KRC yourself.'
+        raw_input('press <ENTER> to continue')
     print '\n\n'
 
 def return_lic():
