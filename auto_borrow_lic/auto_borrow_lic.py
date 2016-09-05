@@ -2,7 +2,7 @@
 A tool that automatically borrows KUKA.OfficeLite license from server.
 '''
 
-import os, time
+import os, time, sys
 from datetime import timedelta, date
 
 # edit fields below
@@ -64,13 +64,16 @@ def check_status():
 def main():
     if not check_environ():
         print 'FlexLM does not exist'
-        return
+        time.sleep(2)
+        sys.exit(-1)
     os.chdir(UTIL_DIR)
     check_status()
     if not is_network_ok():
         print '\n! Can not reach license server\n\n'
-        return
-    raw_input('\n\n# Are you ready to go on?\n\n')
+        time.sleep(2)
+        sys.exit(-1)
+    answer = raw_input('\n\n# Are you ready to go on? (y/n)')
+    if answer.lower().strip() == 'n': sys.exit(0)
     add_lic_file()
     kill_processes()
     return_lic()
@@ -79,6 +82,5 @@ def main():
 if __name__ == '__main__':
     main()
     print 'Only disconnect from license server after KRC started'
-    print 'Press <ENTER> to continue...\n'
-    raw_input('\nStart KRC...')
+    raw_input('\nPress <ENTER> to start KRC')
     start_krc()
