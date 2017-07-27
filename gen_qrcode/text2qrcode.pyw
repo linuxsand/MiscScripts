@@ -5,9 +5,9 @@ class Window(Frame):
     def __init__(self, master=None):
         Frame.__init__(self, master)
 
-        self.label = Label(self, text="Input plain text:")
+        self.label = Label(self, text='Input plain text:')
         self.text = Text(self, height=20, width=40)
-        self.button = Button(self, text="Confirm", command=self.convert)
+        self.button = Button(self, text='Confirm', command=self.convert)
         self.pack()
         self.label.pack()
         self.text.pack()
@@ -16,8 +16,8 @@ class Window(Frame):
         self.image_object = None
         
     def convert(self):
-        text = self.text.get(1.0, "end-1c")
-        if text.strip() != "":
+        text = self.text.get(1.0, 'end-1c')
+        if not text.isspace():
             self.image_object = qrcode.make(data=text)
             self.show()
             
@@ -27,8 +27,8 @@ class Window(Frame):
         
 def main():
     window = Window()
-    window.master.title("Make QRcode")
+    window.master.title('Make QRcode')
     window.mainloop()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
