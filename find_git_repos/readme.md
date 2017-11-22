@@ -1,1 +1,0 @@
-For finding all git repositories .
