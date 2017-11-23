@@ -28,9 +28,9 @@ if not os.path.exists(repos_parent):
 dirs = []
 with open(repos_parent, "r") as f:
     for line in f:
-        if not str.isspace(line):
+        if not str.isspace(line) and os.path.exists(line.rstrip()):
             dirs.append(line.rstrip())
-print dirs
+print dirs, "\n"
 
 dirty_counter = 0
 for _dir in dirs:
@@ -50,6 +50,9 @@ for _dir in dirs:
             print "[dirty repo]:", repo_path
             dirty_counter += 1
 
+        if len(repo.remotes) == 0:
+            print repo_path, "has no remote"
+            continue
         # check if remote is up-to-date
         local_sha = get_last_commit_sha(repo)
         for remote_repo in repo.remotes:
@@ -59,6 +62,6 @@ for _dir in dirs:
                 print repo_path, "->", remote_repo.name, "is not same as local"
 
 if (dirty_counter == 0): print "\nall clear"
-else: print dirty_counter, "\nrepo(s) are dirty"
+else: print "\nexists dirty repo(s), num:", dirty_counter
 
 input("press ENTER to exit")

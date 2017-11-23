@@ -1,2 +1,3 @@
 D:\ShareFolder\Robotics_Vision\Projects
 D:\ShareFolder\KSS_8.3.4_MAIN\Projects
+D:\ShareFolder\Robotics_Vision\Projects\_Mine
