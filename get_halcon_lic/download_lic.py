@@ -1,4 +1,5 @@
 # wrote this script for my friend LT
+#   2020-04-02, Huang Jie
 import os
 
 base_url = 'https://www.51halcon.com/down/license/'
