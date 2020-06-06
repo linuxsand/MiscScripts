@@ -1,0 +1,6 @@
+anon
+
+bin
+prompt
+mget *.*
+quit
